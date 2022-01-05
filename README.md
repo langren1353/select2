@@ -1,4 +1,4 @@
-Select2
+Select2_pinyin
 =======
 ![Build Status][github-actions-image]
 [![Financial Contributors on Open Collective](https://opencollective.com/select2/all/badge.svg?label=financial+contributors)](https://opencollective.com/select2)
@@ -10,7 +10,7 @@ remote data sets, and pagination of results.
 
 To get started, checkout examples and documentation at
 https://select2.org/
-
+支持拼音检索的select2
 Use cases
 ---------
 * Enhancing native selects with search.

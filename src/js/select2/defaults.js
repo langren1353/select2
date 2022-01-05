@@ -35,7 +35,8 @@ define([
   './dropdown/dropdownCss',
   './dropdown/tagsSearchHighlight',
 
-  './i18n/en'
+  './i18n/en',
+  './pinyin'
 ], function ($,
 
              ResultsList,
@@ -52,7 +53,8 @@ define([
              AttachBody, MinimumResultsForSearch, SelectOnClose, CloseOnSelect,
              DropdownCSS, TagsSearchHighlight,
 
-             EnglishTranslation) {
+             EnglishTranslation,
+             pinyinExtract) {
   function Defaults () {
     this.reset();
   }
@@ -287,6 +289,23 @@ define([
 
       // Check if the text contains the term
       if (original.indexOf(term) > -1) {
+        return data;
+      }
+
+      function checkPinYinFullfilled() {
+        var result = pinyinExtract(stripDiacritics(data.text));
+        if(result) {
+          var shortPY = result[0].indexOf(stripDiacritics(params.term).toUpperCase());
+          var longPY = result[1].indexOf(stripDiacritics(params.term).toUpperCase());
+
+          if(shortPY > -1 || longPY > -1){
+            return true;
+          }
+        }
+        return false;
+      }
+
+      if(checkPinYinFullfilled()) {
         return data;
       }
 
